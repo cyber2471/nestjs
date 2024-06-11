@@ -1,0 +1,84 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+
+model mtb_shop_manage {
+  MS_NO          String  @unique(map: "MS_NO") @db.VarChar(10)
+  MS_NM          String  @db.VarChar(100)
+  MS_ENG_NM      String? @db.VarChar(100)
+  CHAIN_NO       String  @default("0000") @db.VarChar(4)
+  CHAIN_HQ_YN    String  @default("N") @db.Char(1)
+  BIZ_NO         String  @db.VarChar(10)
+  BS_TYPE        String  @db.VarChar(30)
+  BS_KIND        String  @db.VarChar(30)
+  MASTER_NM      String  @db.VarChar(10)
+  TEL_NO         String? @db.VarChar(15)
+  HP_NO          String? @db.VarChar(15)
+  HOT_LINE       String? @db.VarChar(15)
+  EMAIL          String? @db.VarChar(30)
+  HOMEPAGE       String? @db.VarChar(50)
+  BILL_ADDR      String? @db.VarChar(120)
+  ZIP_NO         String  @db.VarChar(10)
+  ADDRESS        String  @db.VarChar(120)
+  ADDRESS_DETAIL String? @db.VarChar(120)
+  OPEN_DATE      String? @db.VarChar(8)
+  START_DATE     String? @db.VarChar(8)
+  CLOSE_DATE     String? @db.VarChar(8)
+  OPEN_FG        String  @default("1") @db.Char(1)
+  LANG_FG        String  @db.VarChar(3)
+  THEMA_CD       String  @db.VarChar(3)
+  CREATE_ID      String  @db.VarChar(20)
+  CREATE_DTIME   String  @db.VarChar(14)
+  LAST_ID        String  @db.VarChar(20)
+  LAST_DTIME     String  @db.VarChar(14)
+}
+
+model ctb_waiting_list {
+  SEND_DATE    String  @db.VarChar(8)
+  MS_NO        String  @db.VarChar(10)
+  SEQ          Int     @default(autoincrement())
+  HP_NO        String? @db.VarChar(15)
+  ADULT_CNT    Int
+  KIDS_CNT     Int
+  SEND_DTIME   String  @db.VarChar(14)
+  PROC_FG      String  @db.VarChar(15)
+  CREATE_ID    String  @db.VarChar(20)
+  CREATE_DTIME String  @db.VarChar(14)
+  LAST_ID      String  @db.VarChar(20)
+  LAST_DTIME   String  @db.VarChar(14)
+
+  @@unique([SEND_DATE, MS_NO, SEQ], map: "SEND_DATE")
+  @@id(SEQ)
+}
+
+model mtb_user_manage {
+  MS_NO        String  @db.VarChar(10)
+  USER_ID      String  @db.VarChar(20)
+  USER_NM      String  @db.VarChar(20)
+  PASSWD       String  @db.VarChar(80)
+  DEFAULT_YN   String  @db.Char(1)
+  HP_NO        String? @db.VarChar(15)
+  HOT_LINE     String? @db.VarChar(15)
+  EMAIL        String? @db.VarChar(30)
+  ZIP_NO       String? @db.VarChar(6)
+  ADDRESS      String? @db.VarChar(60)
+  ADDRESS_DT   String? @db.VarChar(50)
+  START_DATE   String? @db.VarChar(8)
+  END_DATE     String? @db.VarChar(8)
+  EMP_FG       String  @db.VarChar(2)
+  STATUS_FG    String  @default("0") @db.Char(1)
+  USE_YN       String  @default("Y") @db.Char(1)
+  EMP_ID       String? @db.VarChar(10)
+  CREATE_ID    String  @db.VarChar(20)
+  CREATE_DTIME String  @db.VarChar(14)
+  LAST_ID      String  @db.VarChar(20)
+  LAST_DTIME   String  @db.VarChar(14)
+
+  @@unique([MS_NO, USER_ID], map: "MS_NO")
+}

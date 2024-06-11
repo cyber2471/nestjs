@@ -1,0 +1,79 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""웨이팅 리스트"""
+type CtbWaitingListModel {
+  """발송일자"""
+  SEND_DATE: String!
+
+  """매장코드"""
+  MS_NO: String!
+
+  """대기순번"""
+  SEQ: Int!
+
+  """휴대폰번호"""
+  HP_NO: String!
+
+  """성인수"""
+  ADULT_CNT: Int!
+
+  """유아수"""
+  KIDS_CNT: Int!
+
+  """발송시간"""
+  SEND_DTIME: String!
+
+  """처리구분"""
+  PROC_FG: String!
+
+  """최초 등록자"""
+  CREATE_ID: String!
+
+  """최종 수정자"""
+  LAST_ID: String!
+}
+
+type Query {
+  """웨이팅 리스트"""
+  findManyUserAll: [CtbWaitingListModel!]!
+}
+
+type Mutation {
+  """웨이팅 등록"""
+  createCtbWaitingList(data: CtbWaitingListCreatetDto!): CtbWaitingListModel!
+}
+
+"""웨이팅 등록"""
+input CtbWaitingListCreatetDto {
+  """발송일자"""
+  SEND_DATE: String!
+
+  """매장코드"""
+  MS_NO: String!
+
+  """휴대폰번호"""
+  HP_NO: String!
+
+  """성인수"""
+  ADULT_CNT: Float!
+
+  """유아수"""
+  KIDS_CNT: Float!
+
+  """처리구분"""
+  PROC_FG: String!
+
+  """최초 등록자"""
+  CREATE_ID: String!
+
+  """최초 등록시간"""
+  CREATE_DTIME: String!
+
+  """최종 수정자"""
+  LAST_ID: String!
+
+  """최종 수정시간"""
+  LAST_DTIME: String!
+}
